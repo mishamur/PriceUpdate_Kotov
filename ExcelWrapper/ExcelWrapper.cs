@@ -11,18 +11,24 @@ namespace OfficeWrapper
         Excel.Application application = null;
         Excel.Workbook workbook = null;
         Excel.Worksheet worksheet = null;
-
-        private ExcelWrapper(Application application, Workbook workbook, Worksheet worksheet)
+        Action<string> logger = null;
+        private ExcelWrapper(Application application, Workbook workbook, Worksheet worksheet, Action<string> logger)
         {
             this.application = application;
             this.workbook = workbook;
             this.worksheet = worksheet;
+            this.logger = logger;
         }
 
-        
-        public static ExcelWrapper OpenReadExcel(string filePath)
-        {
 
+        /// <summary>
+        /// Создаёт объект класса для чтения из excel файла
+        /// </summary>
+        /// <param name="filePath">путь к excel файлу</param>
+        /// <param name="logger"></param>
+        /// <returns></returns>
+        public static ExcelWrapper OpenReadExcel(string filePath, Action<string> logger = null)
+        {
             Excel.Application application = null;
             Excel.Workbook workbook = null;
             Excel.Worksheet worksheet = null;
@@ -35,9 +41,10 @@ namespace OfficeWrapper
             catch
             {
                 RealeseComObjects(worksheet, workbook, application);
+                logger?.Invoke("Ошибка при инициализации com-объектов");
                 throw;
             }
-            return new ExcelWrapper(application, workbook, worksheet);
+            return new ExcelWrapper(application, workbook, worksheet, logger);
         }
 
         /// <summary>
@@ -50,9 +57,9 @@ namespace OfficeWrapper
             var productName = ((Excel.Range)worksheet.Cells[i, "A"]).Value2;
             var productPrice = ((Excel.Range)worksheet.Cells[i, "B"]).Value2;
 
-
             while (productName != null && productPrice != null)
             {
+                                                      //подумать
                 yield return new Product(productName, decimal.Parse(productPrice.ToString()));
                 i++;
                 productName = ((Excel.Range)worksheet.Cells[i, "A"]).Value2;
@@ -65,7 +72,7 @@ namespace OfficeWrapper
         /// </summary>
         /// <param name="products"></param>
         /// <returns>Путь к файлу</returns>
-        public static string CreateAndSaveFileWithProducts(IEnumerable<Product> products)
+        public static string CreateAndSaveFileWithProducts(IEnumerable<Product> products, Action<string> logger = null)
         {
 
             Excel.Application application = null;
@@ -81,6 +88,7 @@ namespace OfficeWrapper
             catch
             {
                 RealeseComObjects(worksheet, workbook, application);
+                logger?.Invoke("Ошибка при инициализации com-объектов");
                 throw;
             }
              worksheet.Name = "Список обновлённых товаров";
@@ -92,6 +100,9 @@ namespace OfficeWrapper
                 worksheet.Cells[i, "B"] = product.Price.ToString();
                 i++;
             }
+            application.Columns[1].AutoFit();
+            application.Columns[2].AutoFit();
+
             //создаётся директория
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             DirectoryInfo directoryInfo =  Directory.CreateDirectory(Path.Combine(folderPath, "PriceUpdate"));

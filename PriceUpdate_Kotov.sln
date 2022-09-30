@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{1C3E4954-D059-4FCD-9A68-7615C19E03CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceUpdate", "PriceUpdate\PriceUpdate.csproj", "{C42518B9-2881-469C-9FC7-A91E63727730}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceUpdate", "PriceUpdate\PriceUpdate.csproj", "{C42518B9-2881-469C-9FC7-A91E63727730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbApi", "DbApi\DbApi.csproj", "{C86799BB-A6ED-41EC-9AF6-EFA36C3D4C1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C42518B9-2881-469C-9FC7-A91E63727730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C42518B9-2881-469C-9FC7-A91E63727730}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C42518B9-2881-469C-9FC7-A91E63727730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C86799BB-A6ED-41EC-9AF6-EFA36C3D4C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C86799BB-A6ED-41EC-9AF6-EFA36C3D4C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C86799BB-A6ED-41EC-9AF6-EFA36C3D4C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C86799BB-A6ED-41EC-9AF6-EFA36C3D4C1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
