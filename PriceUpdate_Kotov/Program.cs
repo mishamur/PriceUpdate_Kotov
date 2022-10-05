@@ -16,18 +16,17 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        Action<string> exceptionLogger;
+        Action<string> logger;
         ILogger consoleLogger = new ConsoleLogger();
-        exceptionLogger = consoleLogger.Log;
+        logger = consoleLogger.Log;
         string pathToExcelFile = @"C:\Users\User\Documents\mveuC#\testExcel\testUpdate.xlsx";
 
         if(args.Length > 0)
             if (!string.IsNullOrEmpty(args[0]))
                 pathToExcelFile = args[0];
             
-
         MainProcess notNamed = new();
-        notNamed.RunProcessing(pathToExcelFile);
+        notNamed.RunProcessing(pathToExcelFile, logger);
     }
 }
 

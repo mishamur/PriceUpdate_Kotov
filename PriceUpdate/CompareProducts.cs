@@ -10,7 +10,7 @@ using Logger;
 namespace PriceUpdate
 {
     //? вопрос где хранится наш исходный файл с ценниками
-    public class PriceUpdater
+    public class CompareProducts
     {
         public static List<Product> GetDifferenceProductsPrice(IEnumerable<Product> newProducts, IEnumerable<Product> curProducts)
         {
