@@ -25,8 +25,8 @@ public static class Program
             if (!string.IsNullOrEmpty(args[0]))
                 pathToExcelFile = args[0];
             
-        MainProcess notNamed = new();
-        notNamed.RunProcessing(pathToExcelFile, logger);
+        MainProcess mainProcess = new();
+        mainProcess.RunProcessing(pathToExcelFile, logger);
     }
 }
 

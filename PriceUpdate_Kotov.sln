@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceUpdate", "PriceUpdate\PriceUpdate.csproj", "{C42518B9-2881-469C-9FC7-A91E63727730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbApi", "DbApi\DbApi.csproj", "{C86799BB-A6ED-41EC-9AF6-EFA36C3D4C1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbApi", "DbApi\DbApi.csproj", "{C86799BB-A6ED-41EC-9AF6-EFA36C3D4C1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
