@@ -10,7 +10,14 @@ namespace PriceUpdate
         {
             ProductsDb productsDb = new ProductsDb(logger);
 
-            List<Product> excelProducts = ExcelWrapper.OpenReadExcel(pathToExcelFile).ReadProductsFromABColumns().ToList();
+            List<Product> excelProducts = new List<Product>();
+            using (ExcelWrapper openRead = ExcelWrapper.OpenReadExcel(pathToExcelFile))
+            {
+                excelProducts = openRead.ReadProductsFromABColumns().ToList();
+            }
+
+
+                
             List<Product> dbProducts = productsDb.GetProducts().ToList();
 
             List<Product> differenceProducts = CompareProducts.GetDifferenceProductsPrice(excelProducts, dbProducts);
@@ -23,10 +30,16 @@ namespace PriceUpdate
             string pathToFile = Path.Combine(directoryInfo.FullName,  "cписок обновлённых продуктов"
                 + ((int)directoryInfo.GetFiles().Length + 1));
 
-            ExcelWrapper.CreateFileExcel(pathToFile).SaveFileWithProducts(differenceProducts);
+            using(ExcelWrapper createFile = ExcelWrapper.CreateFileExcel(pathToFile))
+            {
+                createFile.SaveFileWithProducts(differenceProducts);
+            }
+
+            
 
             productsDb.LoadToProducts(excelProducts, true);
             logger?.Invoke("процесс успешно отработал");
+            GC.Collect();
         }
 
     }
