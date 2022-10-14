@@ -4,6 +4,7 @@ using PriceUpdate;
 using Logger;
 using Interfaces;
 using DbApi;
+using System.Globalization;
 //этапы выполнения программы
 /*приходит файл на выполнение
  * считываем с него данные +
@@ -29,9 +30,3 @@ public static class Program
         mainProcess.RunProcessing(pathToExcelFile, logger);
     }
 }
-
-
-
-
-
-

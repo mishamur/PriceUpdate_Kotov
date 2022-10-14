@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models;
-using OfficeWrapper;
-using Logger;
+﻿using Models;
 
 namespace PriceUpdate
 {
     public class CompareProducts
     {
+        /// <summary>
+        /// Исключаем из нового множества продуктов, множество текущих продуктов 
+        /// </summary>
+        /// <param name="newProducts">Множество новых продуктов</param>
+        /// <param name="curProducts">Множество текущих продуктов</param>
+        /// <returns>Возвращаем новое множество</returns>
         public static List<Product> GetDifferenceProductsPrice(IEnumerable<Product> newProducts, IEnumerable<Product> curProducts)
         {
             return newProducts.Except(curProducts).ToList();
         }
-
     }
 }

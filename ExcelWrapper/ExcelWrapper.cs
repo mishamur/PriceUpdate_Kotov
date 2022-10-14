@@ -164,7 +164,6 @@ namespace OfficeWrapper
                 application = null;
             }
         }
-
         public void Dispose()
         {
             RealeseComObjects(this.worksheet, this.workbook, this.application);

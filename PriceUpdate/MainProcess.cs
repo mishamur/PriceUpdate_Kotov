@@ -6,6 +6,11 @@ namespace PriceUpdate
 {
     public class MainProcess
     {
+        /// <summary>
+        /// Запустить основной процесс
+        /// </summary>
+        /// <param name="pathToExcelFile">Путь к excel файлу с новыми продуктами</param>
+        /// <param name="logger">Логер</param>
         public void RunProcessing(string pathToExcelFile, Action<string> logger = null)
         {
             ProductsDb productsDb = new ProductsDb(logger);
@@ -16,10 +21,7 @@ namespace PriceUpdate
                 excelProducts = openRead.ReadProductsFromABColumns().ToList();
             }
 
-
-                
             List<Product> dbProducts = productsDb.GetProducts().ToList();
-
             List<Product> differenceProducts = CompareProducts.GetDifferenceProductsPrice(excelProducts, dbProducts);
 
             //создаётся директория
@@ -35,11 +37,8 @@ namespace PriceUpdate
                 createFile.SaveFileWithProducts(differenceProducts);
             }
 
-            
-
             productsDb.LoadToProducts(excelProducts, true);
             logger?.Invoke("процесс успешно отработал");
-            GC.Collect();
         }
 
     }

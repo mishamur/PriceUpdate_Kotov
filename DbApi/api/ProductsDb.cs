@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models;
+﻿using Models;
 
 namespace DbApi.api
 {
     public class ProductsDb
     {
         private Action<string> logger;
-
         public ProductsDb(Action<string> logger = null)
         {
             this.logger = logger;
@@ -41,6 +35,10 @@ namespace DbApi.api
             }
         }
 
+        /// <summary>
+        /// Получить множество продуктов из базы данных
+        /// </summary>
+        /// <returns>множество продуктов</returns>
         public IEnumerable<Product> GetProducts()
         {
             using (ApplicationContext dbContext = new ApplicationContext())
@@ -48,7 +46,5 @@ namespace DbApi.api
                 return dbContext.Products.Select(x => x).ToList();
             }
         }
-
-
     }
 }

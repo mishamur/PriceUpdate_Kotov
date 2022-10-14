@@ -19,7 +19,5 @@ namespace DbApi
         {
             optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ProductsDb;Username=postgres;Password=yourPassword");
         }
-
-
     }
 }

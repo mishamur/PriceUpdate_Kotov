@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
     public class Product : IEquatable<Product>
     {
@@ -45,8 +39,6 @@ namespace Models
             if (obj == null) return false;
             else
                 return obj.Position.Equals(this.Position) && obj.Price == this.Price;
-            
-
         }
     }
 }
