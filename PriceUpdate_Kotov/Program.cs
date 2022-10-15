@@ -5,6 +5,7 @@ using Logger;
 using Interfaces;
 using DbApi;
 using System.Globalization;
+using PriceUpdate.ConfigSettings;
 //этапы выполнения программы
 /*приходит файл на выполнение
  * считываем с него данные +
@@ -13,6 +14,8 @@ using System.Globalization;
  * записываем новые данные в бд+
  */
 
+
+
 public static class Program
 {
     public static void Main(string[] args)
@@ -20,13 +23,11 @@ public static class Program
         Action<string> logger;
         ILogger consoleLogger = new ConsoleLogger();
         logger = consoleLogger.Log;
-        string pathToExcelFile = @"C:\Users\User\Documents\mveuC#\testExcel\testUpdate.xlsx";
 
-        if(args.Length > 0)
-            if (!string.IsNullOrEmpty(args[0]))
-                pathToExcelFile = args[0];
-            
+        SettingsLoader settingsLoader = new SettingsLoader(new Settings());
+        ISettings settings = settingsLoader.LoadSettings();
+
         MainProcess mainProcess = new();
-        mainProcess.RunProcessing(pathToExcelFile, logger);
+        mainProcess.RunProcessing(settings, logger);
     }
 }
