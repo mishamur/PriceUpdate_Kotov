@@ -99,7 +99,7 @@ namespace OfficeWrapper
         }
 
         /// <summary>
-        /// Создает и заполняет excel-файл заданным перечислением
+        /// Создает и заполняет excel-файл заданным перечислением, в столбец A - позиция товара, в столбец B цена
         /// </summary>
         /// <param name="products"></param>
         /// <returns>Путь к файлу</returns>
