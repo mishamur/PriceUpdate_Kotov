@@ -32,9 +32,9 @@
   •всё остальное  
   
 ### Как выглядит входной файл:  
-![input](C:\Users\User\Pictures\input.PNG)  
+![input](https://github.com/mishamur/pictures/blob/main/input.PNG)  
 
 ### Как выглядит выходной файл:  
-![output](C:\Users\User\Pictures\output.PNG)
+![output](https://github.com/mishamur/pictures/blob/main/output.PNG)
 
 
