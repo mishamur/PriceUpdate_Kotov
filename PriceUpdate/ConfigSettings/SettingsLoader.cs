@@ -5,14 +5,19 @@ namespace PriceUpdate.ConfigSettings
     public class SettingsLoader
     {
         private ISettings settings;
+        ILogger logger;
+        const string TEMPLATE_SETTING = "-pathToExcelFile {path}";
         private readonly string applicationFolderName = "PriceConfig";
 
-        public SettingsLoader(ISettings settings)
+        public SettingsLoader(ISettings settings, ILogger logger = null)
         {
             this.settings = settings;
             SetDefaultValues();
         }
-
+        /// <summary>
+        /// загрузить настройки
+        /// </summary>
+        /// <returns>объект ISettings</returns>
         public ISettings LoadSettings()
         {
             SearchInSystemDirectory();
@@ -21,13 +26,19 @@ namespace PriceUpdate.ConfigSettings
             return settings;
         }
 
+        /// <summary>
+        /// установить дефолтные значения
+        /// </summary>
         private void SetDefaultValues()
         {
             settings.SetDefaultOutputDirectory(Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), applicationFolderName
                 ));
         }
-
+        
+        /// <summary>
+        /// поиск в системной директории
+        /// </summary>
         private void SearchInSystemDirectory()
         {
             var pathToFolder = Path.Combine(Environment.GetFolderPath(
@@ -35,6 +46,9 @@ namespace PriceUpdate.ConfigSettings
             SearchInDirectory(pathToFolder);
         }
 
+        /// <summary>
+        /// Поиск в директории конкретного юзера
+        /// </summary>
         private void SearchingHomeDirectory()
         {
             var pathToFolder = Path.Combine(Environment.GetFolderPath(
@@ -42,6 +56,10 @@ namespace PriceUpdate.ConfigSettings
             SearchInDirectory(pathToFolder);
         }
 
+        /// <summary>
+        /// поиск в директории
+        /// </summary>
+        /// <param name="pathToFolder">путь до папки</param>
         private void SearchInDirectory(string pathToFolder)
         {
             var pathToFile = Path.Combine(pathToFolder, "priceConfig.txt");
@@ -62,13 +80,19 @@ namespace PriceUpdate.ConfigSettings
             }
         }
 
+        /// <summary>
+        /// получить значения из параметров запуска
+        /// </summary>
         private void GetFromParams()
         {
             this.settings.ParseToSettigns(Environment.GetCommandLineArgs());
         }
 
-
-
+        /// <summary>
+        /// Считать файл настроек
+        /// </summary>
+        /// <param name="pathToFile">путь до файла</param>
+        /// <returns>строки настроек</returns>
         private string[] ReadSettingsFile(string pathToFile)
         {
             List<string> result = new List<string>();
@@ -89,12 +113,16 @@ namespace PriceUpdate.ConfigSettings
                 }
                 catch(Exception ex)
                 {
-                    //доббавить логику
+                    logger?.Log(ex.Message);
                 }
             }
             return result.ToArray();
         }
 
+        /// <summary>
+        /// Создать файл и заполнить его шаблоном настроек
+        /// </summary>
+        /// <param name="pathToFile">путь к файлу)</param>
         private void CreateAndFillConfigFile(string pathToFile)
         {
             try
@@ -103,13 +131,13 @@ namespace PriceUpdate.ConfigSettings
                 {
                     using (var text = File.CreateText(pathToFile))
                     {
-                        text.WriteLine("-pathToExcelFile {path}");
+                        text.WriteLine(TEMPLATE_SETTING);
                     }
                 }
             }
             catch(Exception ex)
             {
-                //добавить логику
+                logger.Log(ex.Message);
             }
         }
     }
