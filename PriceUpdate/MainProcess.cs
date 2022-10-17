@@ -32,7 +32,7 @@ namespace PriceUpdate
             string outputFolderPath = settings.GetValue("outputDirectory")?.ToString();
             Directory.CreateDirectory(outputFolderPath);
             DirectoryInfo outputDirectory = new DirectoryInfo(outputFolderPath);
-            string fileName = "список обновлённых продуктов";
+            string fileName = "список обновлённых продуктов" + DateTime.Now.ToString("g").GetHashCode();
             //задаётся путь к файлу
             string pathToFile = Path.Combine(outputFolderPath, fileName);
 
