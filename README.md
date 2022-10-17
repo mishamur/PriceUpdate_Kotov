@@ -32,6 +32,9 @@
   •всё остальное  
   
 ### Как выглядит входной файл:  
+![input](C:\Users\User\Pictures\input.PNG)  
 
+### Как выглядит выходной файл:  
+![output](C:\Users\User\Pictures\output.PNG)
 
 
