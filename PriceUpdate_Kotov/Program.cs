@@ -5,7 +5,7 @@ using Logger;
 using Interfaces;
 using DbApi;
 using System.Globalization;
-using PriceUpdate.ConfigSettings;
+using ConfigSettings;
 //этапы выполнения программы
 /*приходит файл на выполнение
  * считываем с него данные +
@@ -13,8 +13,6 @@ using PriceUpdate.ConfigSettings;
  * генерируем файл только с обновлёнными ценниками и новыми продуктами+
  * записываем новые данные в бд+
  */
-
-
 
 public static class Program
 {

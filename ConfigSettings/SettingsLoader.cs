@@ -1,6 +1,6 @@
 ﻿using Interfaces;
 
-namespace PriceUpdate.ConfigSettings
+namespace ConfigSettings
 {
     public class SettingsLoader
     {

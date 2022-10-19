@@ -2,7 +2,7 @@
 using OfficeWrapper;
 using DbApi.api;
 using Interfaces;
-using PriceUpdate.ConfigSettings;
+using ConfigSettings;
 using OfficeWrapper.Exceptions.ExcelExceptions;
 
 namespace PriceUpdate

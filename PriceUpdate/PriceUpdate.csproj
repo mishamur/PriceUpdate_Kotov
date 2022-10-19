@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ConfigSettings\ConfigSettings.csproj" />
     <ProjectReference Include="..\DbApi\DbApi.csproj" />
     <ProjectReference Include="..\ExcelWrapper\OfficeWrapper.csproj" />
     <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
