@@ -7,7 +7,7 @@ namespace ConfigSettings
         private ISettings settings;
         ILogger logger;
         const string TEMPLATE_SETTING = "-pathToExcelFile {path}";
-        private readonly string applicationFolderName = "PriceConfig";
+        public readonly string applicationFolderName = "PriceConfig";
 
         public SettingsLoader(ISettings settings, ILogger logger = null)
         {
